@@ -4,6 +4,16 @@
 *Note*: After any change to these files you need to restart firefox for them to
 take effect!
 
+* Table of content
+:PROPERTIES:
+:TOC:      :include all :ignore this
+:END:
+
+:CONTENTS:
+- [[#userjs][user.js]]
+- [[#installation][Installation]]
+:END:
+
 * user.js
 
 =user.js= is used to set custom variables inside firefox. To set manually or
