@@ -22,7 +22,7 @@ ln -s ${__script_path}/chrome ${__profile_path}/chrome
 
 # Link user.js
 
-if [[ -d ${__profile_path}/user.js ]]; then
+if [[ -e ${__profile_path}/user.js ]]; then
     printf 'Moving "<profile>/user.js" -> "<profile>/user.js.old/"\n' 1>&2
     mv -f ${__profile_path}/user.js ${__profile_path}/user.js.old
 fi

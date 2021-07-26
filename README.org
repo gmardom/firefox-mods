@@ -1,6 +1,9 @@
 #+title: Making firefox usable…
 #+auto_tangle: t
 
+*Note*: After any change to these files you need to restart firefox for them to
+take effect!
+
 * user.js
 
 =user.js= is used to set custom variables inside firefox. To set manually or
@@ -33,7 +36,8 @@ user_pref("browser.urlbar.suggest.calculator", true);
 
 * Installation
 
-To install these you need to find out path to your profile you want to use on your firefox browser.
+To install these you need to find out path to your profile you want to use on
+your firefox browser.
 
 To do that:
 - type =about:support= in url bar
@@ -66,7 +70,7 @@ ln -s ${__script_path}/chrome ${__profile_path}/chrome
 
 # Link user.js
 
-if [[ -d ${__profile_path}/user.js ]]; then
+if [[ -e ${__profile_path}/user.js ]]; then
     printf 'Moving "<profile>/user.js" -> "<profile>/user.js.old/"\n' 1>&2
     mv -f ${__profile_path}/user.js ${__profile_path}/user.js.old
 fi
