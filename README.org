@@ -42,13 +42,10 @@ To do that:
 - run =chmod u+x ./install.sh && ./install.sh <profile_path>=
 
 #+begin_src shell :tangle install.sh
-#!/bin/sh
+#!/usr/bin/env bash
 
 __script_path="$(realpath $0)"
 __script_path="${__script_path%/*}"
-
-echo $__script_path
-exit 0
 
 __profile_path="$1"
 
@@ -57,11 +54,23 @@ if [[ -z ${__profile_path} ]]; then
     exit 1
 fi
 
-
 # Link chrome folder
 
 if [[ -d ${__profile_path}/chrome ]]; then
-    printf 'Moving "<profile>/chrome/" -> "<profile>/chrome.old/"'
+    printf 'Moving "<profile>/chrome/" -> "<profile>/chrome.old/"\n' 1>&2
     mv -f ${__profile_path}/chrome ${__profile_path}/chrome.old
 fi
+
+printf 'Linking "<repo>/chrome/" -> "<profile>/chrome/"\n' 1>&2
+ln -s ${__script_path}/chrome ${__profile_path}/chrome
+
+# Link user.js
+
+if [[ -d ${__profile_path}/user.js ]]; then
+    printf 'Moving "<profile>/user.js" -> "<profile>/user.js.old/"\n' 1>&2
+    mv -f ${__profile_path}/user.js ${__profile_path}/user.js.old
+fi
+
+printf 'Linking "<repo>/user.js" -> "<profile>/user.js"\n' 1>&2
+ln -s ${__script_path}/user.js ${__profile_path}/user.js
 #+end_src
